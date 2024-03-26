@@ -23,6 +23,26 @@ class TestCalculator(unittest.TestCase):
             calculator('fatorial', 10, 2)
         self.assertEqual(ex.exception.args[0], 'Informe uma operação válida (add, sub, mult, div)')
 
+    def test_sum(self):
+        result = calculator('add', 10, 30)
+        self.assertEqual(result, 40)
+    
+    def test_sub(self):
+        result = calculator('sub', 50, 25)
+        self.assertEqual(result, 25)
+
+    def test_mult(self):
+        result = calculator('mult', 2, 5)
+        self.assertEqual(result, 10)
+
+    def test_div(self):
+        result = calculator('div', 10, 5)
+        self.assertEqual(result, 2)
+
+    def test_zero_division(self):
+        with self.assertRaises(ZeroDivisionError) as ze:
+            calculator('div', 10, 0)
+        self.assertEqual(ze.exception.args[0], "Você não pode dividir um número por 0")
 
 if __name__ ==  '__main__':
     unittest.main()
